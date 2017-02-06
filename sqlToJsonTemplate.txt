@@ -1,0 +1,83 @@
+{
+	"package":"#pkgPth#",
+	"import":[
+				{"path":"java.sql.*"},
+				{"path":"java.util.*"},
+				{"path":"com.kool.core.database.BaseValue"},
+				{"path":"com.kool.core.tools.CommonTools"}
+			],
+	"clazz":{
+				"clazzspecifier":"public",
+				"clazzname":"#tabname#Value",
+				"inheritance":"extends BaseValue",
+				"clazzbody":{
+								"static":"",
+								"field":[
+											{
+												"fieldspecifier":"protected",
+												"fieldtype":"#coltype#",
+												"fieldname":"#colname#"
+											}
+										],
+								"method":[
+											{
+												"methodid":"set",
+												"methodspecifier":"public",
+												"returntype":"void",
+												"methodname":"set#colname#",
+												"parameters":[
+																{
+																	"parametertype":"#coltype#",
+																	"parametername":"#colname#"
+																}
+															],
+												"methodbody":[
+																{
+																	"paragraph":"this.#colname# = #colname#;"
+																}
+															]
+											},
+											{
+												"methodid":"get",
+												"methodspecifier":"public",
+												"returntype":"#coltype#",
+												"methodname":"get#colname#",
+												"parameters":[
+																{
+																	"parametertype":"",
+																	"parametername":""
+																}
+															],
+												"methodbody":[
+																{
+																	"paragraph":"return this.#colname#;"
+																}
+															]
+											},
+											{
+												"methodid":"parseValue",
+												"methodspecifier":"public static",
+												"returntype":"#tabname#Value",
+												"methodname":"parseValue",
+												"parameters":[
+																{
+																	"parametertype":"Map",
+																	"parametername":"map"
+																}
+															],
+												"methodbody":[
+																{
+																	"paragraph":"if(null==map) {\r\n\t\t\treturn null;\r\n\t\t}\r\n\t\t#tabname#Value value = new #tabname#Value();"
+																},
+																{
+																	"paragraph":"if(map.containsKey(\"#colname#\")&&!CommonTools.isEmpty((#coltype#)map.get(\"#colname#\"))) {\r\n\t\t\tvalue.set#colname#((#coltype#) map.get(\"#colname#\"));\r\n\t\t}"
+																},
+																{
+																	"paragraph":"return value;"
+																}
+															]
+											}
+										]
+							}
+			}
+}
